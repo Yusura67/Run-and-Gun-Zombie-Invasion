@@ -29,7 +29,7 @@
 ### วิธีการติดตั้งและการเปิดเล่น (Installation & How to Play)
 โปรเจกต์นี้มีเพียง Source Code ผู้เล่นจำเป็นต้องนำไปคอมไพล์เอง
 1. โคลนโปรเจกต์นี้ลงในเครื่องของคุณ:
-   `git clone https://github.com/Yusura67/Run---Gun-Zombie-Invation.git`
+   `git clone https://github.com/Yusura67/Run-and-Gun-Zombie-Invasion.git`
 2. เปิดโฟลเดอร์โปรเจกต์ด้วย IDE ที่รองรับ C/C++ (เช่น Visual Studio หรือ VS Code)
 3. ตรวจสอบให้แน่ใจว่าได้ตั้งค่าการเชื่อมต่อไลบรารี Raylib และ ENet ไว้ในโปรแกรมของคุณแล้ว
 4. ทำการ Compile และ Run ผ่านโปรแกรม IDE ของคุณ
