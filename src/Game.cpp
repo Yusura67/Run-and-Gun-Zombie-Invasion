@@ -326,8 +326,27 @@ void Game::UpdateBullets() {
 
 void Game::UpdateEnemies() {
     Rectangle playerRect = { player.x, player.y, player.width, player.height };
-    if (CheckCollisionRecs(playerRect, goal)) {
-        currentState = GameState::VICTORY; 
+    
+    // เช็คว่าชนเส้นชัย และต้องยังไม่เข้าสถานะ VICTORY
+    if (CheckCollisionRecs(playerRect, goal) && currentState != GameState::VICTORY) {
+        
+        // หยุดเพลงที่กำลังเล่นอยู่
+        StopMusicStream(assets.finalBossMusic);
+        StopMusicStream(assets.gameplayMusic);
+        
+        // เช็คว่าเปิด Fullscreen อยู่ไหม ถ้าเปิดอยู่ให้พักจอไว้ก่อน  Media Player)
+        bool wasFullscreen = IsWindowFullscreen(); 
+        if (wasFullscreen) ToggleFullscreen(); 
+
+        // รันวิดีโอฉากจบ ระบบแช่แข็งเกมเพลย์จนกว่าวิดีโอจะปิด
+        system("start /wait wmplayer \"%CD%\\assets\\ending.mp4\" /fullscreen /close");
+        
+        // คืนค่าจอ Fullscreen ถ้าผู้เล่นเปิดจอเต็มไว้
+        if (wasFullscreen) ToggleFullscreen(); 
+
+        // เปลี่ยนหน้าจอเข้าสู่ UI สรุปคะแนน
+        currentState = GameState::VICTORY;
+        player.isWinner = true; // อัปเดตสถานะให้ผู้เล่นชนะ
     }
 
     for (auto& e : enemies) {
